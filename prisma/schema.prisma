@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native","darwin","debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int              @id @default(autoincrement())
+  email           String
+  name            String
+  lastname        String
+  cellphone       String
+  userActivations UserActivation[]
+}
+
+model ActivationStand {
+  id              Int              @id @default(autoincrement())
+  name            String
+  description     String
+  userActivations UserActivation[]
+}
+
+model UserActivation {
+  id                Int             @id @default(autoincrement())
+  userId            Int             @unique
+  activationStandId Int             @unique
+  activationStand   ActivationStand @relation(fields: [activationStandId], references: [id])
+  user              User            @relation(fields: [userId], references: [id])
+}
