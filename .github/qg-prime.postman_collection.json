@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "57b2174b-ad03-4de6-bd18-db7550930064",
+		"name": "qg-prime",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7957124"
+	},
+	"item": [
+		{
+			"name": "Fetch all stands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-qg-prime-win.azurewebsites.net/api/api-fetch-all-stands",
+					"protocol": "https",
+					"host": [
+						"api-qg-prime-win",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"api-fetch-all-stands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-qg-prime.azurewebsites.net/api/api-fetch-all-users",
+					"protocol": "https",
+					"host": [
+						"api-qg-prime",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"api-fetch-all-users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rafaela\",\r\n    \"lastname\": \"Arribamar\",\r\n    \"cellphone\": \"(15)974025415\",\r\n    \"email\": \"rafaarribamar@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-qg-prime.azurewebsites.net/api/api-user-register",
+					"protocol": "https",
+					"host": [
+						"api-qg-prime",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"api-user-register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register stand",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Stand 3\",\r\n    \"description\": \"Stand 3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-qg-prime.azurewebsites.net/api/api-stand-register",
+					"protocol": "https",
+					"host": [
+						"api-qg-prime",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"api-stand-register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User check-in",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 3,\r\n    \"activationStandId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-qg-prime.azurewebsites.net/api/api-user-check-in",
+					"protocol": "https",
+					"host": [
+						"api-qg-prime",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"api-user-check-in"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

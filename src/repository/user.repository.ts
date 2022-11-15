@@ -19,4 +19,8 @@ export class UserRepository {
         return this.prismaClient.user.create({ data: modelCast.cast(user) });
     }
 
+    public async findById(id: number): Promise<User> {
+        return this.prismaClient.user.findUnique({ where: { id } });
+    }
+
 }

@@ -19,6 +19,15 @@ export class UserController {
         }
     }
 
+    public async fetchById(id: number){
+        try{
+            return this.userService.fetchUserById(id);
+        } catch(e) {
+            this.logger.error(e);            
+            throw Error(e);
+        }
+    }
+
     public async register(user: CreateUserDto){
         try {
             return this.userService.registerUser(user);

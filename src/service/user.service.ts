@@ -13,6 +13,10 @@ export class UserService {
         return this.userRepository.findAll();
     }
 
+    public async fetchUserById(id: number){
+        return this.userRepository.findById(id);
+    }
+
     public async registerUser(user: CreateUserDto){
         if(!user.email || !user.name || !user.lastname || !user.cellphone)
             throw Error('Missing information');
