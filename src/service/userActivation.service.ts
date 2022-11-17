@@ -9,6 +9,10 @@ export class UserActivationService{
         this.userActivationRepository = new UserActivationRepository();
     }
 
+    public async fetchAllUserActivations(){
+        return this.userActivationRepository.fetchAll();
+    }
+
     public async checkIn(userActivation: CreateUserActivationDto){
         if(!userActivation.userId || !userActivation.activationStandId)
             throw Error('Missing information');

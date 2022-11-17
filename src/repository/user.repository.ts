@@ -11,7 +11,15 @@ export class UserRepository {
     }
 
     public async findAll(): Promise<User[]> {
-        return this.prismaClient.user.findMany();
+        return this.prismaClient.user.findMany({
+            include: {
+                userActivations: {
+                    select: {
+                        activationStand: true
+                    }
+                }
+            }
+        });
     }
 
     public async create(user: CreateUserDto): Promise<User> {

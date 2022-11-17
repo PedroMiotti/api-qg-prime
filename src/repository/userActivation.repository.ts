@@ -14,4 +14,13 @@ export class UserActivationRepository {
         const modelCast = new ModelCast<CreateUserActivationDto, UserActivation>();
         return this.prismaClient.userActivation.create({ data: modelCast.cast(userActivation) });
     }
+
+    public async fetchAll(): Promise<UserActivation[]> {
+        return this.prismaClient.userActivation.findMany({
+            include: {
+                user: true,
+                activationStand: true
+            }
+        });
+    }
 }

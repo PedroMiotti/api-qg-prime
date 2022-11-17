@@ -12,6 +12,15 @@ export class UserActivationController {
         this.userActivationService = new UserActivationService();
     }
 
+    public async fetchAll() {
+        try{
+            return this.userActivationService.fetchAllUserActivations();
+        } catch(e){
+            this.logger.error(e);
+            throw Error(e);
+        }
+    }
+
     public async checkIn(userActivation: CreateUserActivationDto){
         try{
             return this.userActivationService.checkIn(userActivation);
