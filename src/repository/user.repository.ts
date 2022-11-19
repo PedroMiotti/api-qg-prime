@@ -22,9 +22,9 @@ export class UserRepository {
         });
     }
 
-    public async create(user: CreateUserDto): Promise<User> {
-        const modelCast = new ModelCast<CreateUserDto, User>();
-        return this.prismaClient.user.create({ data: modelCast.cast(user) });
+    public async create(): Promise<User> {
+        const user: Partial<User> = {};
+        return this.prismaClient.user.create({data: user});
     }
 
     public async findById(id: number): Promise<User> {

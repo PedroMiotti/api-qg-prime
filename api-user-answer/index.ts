@@ -1,22 +1,15 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { UserController } from "../src/controller/user.controller";
-import { CreateUserDto } from "../src/dto/User.dto";
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const userController = new UserController();
 
-    // const { name, email, lastname, cellphone } = req.body;
-    // const userDto: CreateUserDto = {
-    //     email: email || "",
-    //     name: name || "",
-    //     lastname: lastname || "",
-    //     cellphone: cellphone || ""
-    // };
-
     try {
-        const user = await userController.register();
+        const { userId, answersIds } = req.body;
+
+        const userAnswer = await userController.answerQuestion(+userId, answersIds);
         context.res = {
-            body: user,
+            body: userAnswer,
             Headers:  {'Content-Type': 'application/json'}
         };
 
@@ -27,7 +20,6 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             headers:  {'Content-Type': 'application/json'}
         };
     }
-
 };
 
 export default httpTrigger;

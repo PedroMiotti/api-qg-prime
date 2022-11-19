@@ -28,9 +28,18 @@ export class UserController {
         }
     }
 
-    public async register(user: CreateUserDto){
+    public async register(){
         try {
-            return this.userService.registerUser(user);
+            return this.userService.registerUser();
+        } catch (e) {
+            this.logger.error(e);
+            throw Error(e);
+        }
+    }
+
+    public async answerQuestion(id: number, answersIds: number[]){
+        try {
+            return this.userService.answerQuestion(id, answersIds);
         } catch (e) {
             this.logger.error(e);
             throw Error(e);

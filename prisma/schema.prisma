@@ -13,11 +13,8 @@ datasource db {
 
 model User {
   id              Int              @id @default(autoincrement())
-  email           String
-  name            String
-  lastname        String
-  cellphone       String
   userActivations UserActivation[]
+  userAnswers     UserAnswer[]
   createdAt       DateTime         @default(now())
 }
 
@@ -36,4 +33,34 @@ model UserActivation {
   activationStand   ActivationStand @relation(fields: [activationStandId], references: [id])
   user              User            @relation(fields: [userId], references: [id])
   createdAt         DateTime        @default(now())
+}
+
+model Question {
+  id          Int          @id @default(autoincrement())
+  type        QuestionType
+  description String
+  answers     Answer[]
+  createdAt   DateTime     @default(now())
+}
+
+model Answer {
+  id          Int         @id @default(autoincrement())
+  description String
+  questionId  Int
+  question    Question    @relation(fields: [questionId], references: [id])
+  userAnswers UserAnswer[]
+  createdAt   DateTime    @default(now())
+}
+
+model UserAnswer {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
+  answerId Int
+  answer   Answer @relation(fields: [answerId], references: [id])
+}
+
+enum QuestionType {
+  SINGLE
+  MULTIPLE
 }
