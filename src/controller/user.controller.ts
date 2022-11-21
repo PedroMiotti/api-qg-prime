@@ -19,6 +19,16 @@ export class UserController {
         }
     }
 
+    
+    public async fetchAllAnswers(){
+        try{
+            return this.userService.fetchAllUserAnswers();
+        } catch(e) {
+            this.logger.error(e);            
+            throw Error(e);
+        }
+    }
+
     public async fetchById(id: number){
         try{
             return this.userService.fetchUserById(id);

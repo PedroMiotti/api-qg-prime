@@ -15,4 +15,19 @@ export class UserAnswerRepository {
         return this.prismaClient.userAnswer.create({ data: modelCast.cast(userAnswer) });
     }
 
+    public async fetchAll():Promise<UserAnswer[]> {
+        return this.prismaClient.userAnswer.findMany({
+            include: {
+                answer: {
+                    select: {
+                        id: true,
+                        description: true,
+                        question: true
+                    }
+                },
+                user: true
+            }
+        });
+    }
+
 }

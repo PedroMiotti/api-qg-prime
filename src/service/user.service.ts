@@ -16,6 +16,10 @@ export class UserService {
         return this.userRepository.findAll();
     }
 
+    public async fetchAllUserAnswers(){
+        return this.userAnswerRepository.fetchAll();
+    }
+
     public async fetchUserById(id: number){
         return this.userRepository.findById(id);
     }
