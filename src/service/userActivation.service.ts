@@ -9,8 +9,22 @@ export class UserActivationService{
         this.userActivationRepository = new UserActivationRepository();
     }
 
-    public async fetchAllUserActivations(){
-        return this.userActivationRepository.fetchAll();
+    public async fetchAllUserActivations(dateFilter: string){
+        let filterByDate: Date;
+
+        if(dateFilter !== 'all'){
+            const separatedDate = dateFilter.split('/');
+            
+            const constructedDate = new Date(
+                parseInt(separatedDate[2]),
+                parseInt(separatedDate[1]) - 1,
+                parseInt(separatedDate[0]),
+              );
+
+            filterByDate = constructedDate; 
+        } 
+
+        return this.userActivationRepository.fetchAll(filterByDate ? filterByDate : null);
     }
 
     public async checkIn(userActivation: CreateUserActivationDto){

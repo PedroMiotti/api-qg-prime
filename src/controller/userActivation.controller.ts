@@ -12,9 +12,9 @@ export class UserActivationController {
         this.userActivationService = new UserActivationService();
     }
 
-    public async fetchAll() {
+    public async fetchAll(dateFilter: string) {
         try{
-            return this.userActivationService.fetchAllUserActivations();
+            return this.userActivationService.fetchAllUserActivations(dateFilter);
         } catch(e){
             this.logger.error(e);
             throw Error(e);

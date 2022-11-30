@@ -5,7 +5,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const userActivationsController = new UserActivationController();
 
     try{
-        const activations = await userActivationsController.fetchAll();
+        const { dateFilter } = req.query;
+        const activations = await userActivationsController.fetchAll(dateFilter);
 
         context.res = {
             body: activations,

@@ -10,9 +10,9 @@ export class UserController {
         this.userService = new UserService();
     }
 
-    public async fetchAll(){
+    public async fetchAll(dateFilter: string){
         try{
-            return this.userService.fetchAllUsers();
+            return this.userService.fetchAllUsers(dateFilter);
         } catch(e) {
             this.logger.error(e);            
             throw Error(e);
@@ -20,9 +20,9 @@ export class UserController {
     }
 
     
-    public async fetchAllAnswers(){
+    public async fetchAllAnswers(dateFilter: string){
         try{
-            return this.userService.fetchAllUserAnswers();
+            return this.userService.fetchAllUserAnswers(dateFilter);
         } catch(e) {
             this.logger.error(e);            
             throw Error(e);

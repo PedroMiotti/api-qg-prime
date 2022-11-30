@@ -10,7 +10,7 @@ export class UserRepository {
         this.prismaClient = new PrismaClient();
     }
 
-    public async findAll(): Promise<User[]> {
+    public async findAll(dateFilter: Date): Promise<User[]> {
         return this.prismaClient.user.findMany({
             include: {
                 userActivations: {
@@ -18,7 +18,15 @@ export class UserRepository {
                         activationStand: true
                     }
                 }
-            }
+            },
+            ...(dateFilter && {
+                where: {
+                    createdAt: {
+                      gte: new Date(dateFilter.setUTCHours(0)),
+                      lt: new Date(dateFilter.setUTCHours(23)),
+                    },
+                },
+              }),
         });
     }
 

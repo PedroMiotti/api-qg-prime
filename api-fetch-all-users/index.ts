@@ -5,7 +5,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const userController = new UserController();
 
     try {
-        const users = await userController.fetchAll();
+        const { dateFilter } = req.query;
+
+        const users = await userController.fetchAll(dateFilter);
         context.res = {
             body: users,
             Headers:  {'Content-Type': 'application/json'}
